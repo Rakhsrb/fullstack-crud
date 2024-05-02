@@ -47,38 +47,42 @@ export const Home = () => {
                 </tr>
               </thead>
               <tbody>
-                {data.length <= 0
-                  ? "NO DATA"
-                  : data?.map((item, index) => (
-                      <tr
-                        key={index}
-                        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                {data.length <= 0 ? (
+                  <tr>
+                    <td>NO DATA</td>
+                  </tr>
+                ) : (
+                  data?.map((item, index) => (
+                    <tr
+                      key={index}
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    >
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        <th
-                          scope="row"
-                          className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        {item.userName}
+                      </th>
+                      <td className="px-6 py-4">{item.age}</td>
+                      <td className="px-6 py-4">{item.job}</td>
+                      <td className="px-6 py-4">{item.gender}</td>
+                      <td className="px-6 py-4 flex gap-4">
+                        <Link className="bg-blue-400 text-white px-4 py-2">
+                          edit
+                        </Link>
+                        <button
+                          onClick={() => handleDelete(item._id)}
+                          className="bg-red-500 text-white px-4 py-2"
                         >
-                          {item.userName}
-                        </th>
-                        <td className="px-6 py-4">{item.age}</td>
-                        <td className="px-6 py-4">{item.job}</td>
-                        <td className="px-6 py-4">{item.gender}</td>
-                        <td className="px-6 py-4 flex gap-4">
-                          <Link className="bg-blue-400 text-white px-4 py-2">
-                            edit
-                          </Link>
-                          <button
-                            onClick={() => handleDelete(item._id)}
-                            className="bg-red-500 text-white px-4 py-2"
-                          >
-                            Delete
-                          </button>
-                          <Link className="bg-green-700 text-white px-4 py-2">
-                            View
-                          </Link>
-                        </td>
-                      </tr>
-                    ))}
+                          Delete
+                        </button>
+                        <Link className="bg-green-700 text-white px-4 py-2">
+                          View
+                        </Link>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           )}
